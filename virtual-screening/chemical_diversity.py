@@ -16,6 +16,7 @@ from rdkit import Chem, DataStructs
 from rdkit.Chem import Crippen, Descriptors, Draw
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from rdkit.Chem.rdFingerprintGenerator import GetMorganGenerator
+from rdkit.Chem.Draw import rdMolDraw2D
 
 
 @dataclass
@@ -126,7 +127,7 @@ def analyze_chemical_diversity(
         #    useSVG=False,
         #))
 
-from rdkit.Chem.Draw import rdMolDraw2D
+
 
        # Drawing options
        draw_options = rdMolDraw2D.MolDrawOptions()
