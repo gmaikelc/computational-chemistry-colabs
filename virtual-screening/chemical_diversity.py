@@ -132,7 +132,7 @@ def analyze_chemical_diversity(
        # Drawing options
         draw_options = rdMolDraw2D.MolDrawOptions()
 
-        draw_options.legendFontSize = 24  # Compound names and scores
+        draw_options.legendFontSize = 54  # Compound names and scores
         draw_options.baseFontSize = 1.1   # Atom labels (N, O, Cl, etc.)
         draw_options.minFontSize = 16     # Minimum atom font size
 
