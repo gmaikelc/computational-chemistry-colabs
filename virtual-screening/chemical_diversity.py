@@ -118,11 +118,36 @@ def analyze_chemical_diversity(
             bond_colors.append({i: scaffold_color for i in bond_ids})
             legends.append(f"{row['name']}\nTanimoto = {row['Tanimoto']:.3f}\n"
                            + ("Acyclic: no scaffold" if not atom_ids else "Murcko scaffold highlighted"))
-        display(Draw.MolsToGridImage(
-            diverse["mol"].tolist(), legends=legends,
-            molsPerRow=int(mols_per_row), subImgSize=(420, 300),
-            highlightAtomLists=atom_lists, highlightBondLists=bond_lists,
-            highlightAtomColors=atom_colors, highlightBondColors=bond_colors,
-            useSVG=False,
-        ))
+        #display(Draw.MolsToGridImage(
+        #    diverse["mol"].tolist(), legends=legends,
+        #    molsPerRow=int(mols_per_row), subImgSize=(420, 300),
+        #    highlightAtomLists=atom_lists, highlightBondLists=bond_lists,
+        #    highlightAtomColors=atom_colors, highlightBondColors=bond_colors,
+        #    useSVG=False,
+        #))
+
+       from rdkit.Chem.Draw import rdMolDraw2D
+
+       # Drawing options
+       draw_options = rdMolDraw2D.MolDrawOptions()
+
+       draw_options.legendFontSize = 24  # Compound names and scores
+       draw_options.baseFontSize = 1.1   # Atom labels (N, O, Cl, etc.)
+       draw_options.minFontSize = 16     # Minimum atom font size
+
+       display(
+           Draw.MolsToGridImage(
+               diverse["mol"].tolist(),
+               legends=legends,
+               molsPerRow=int(mols_per_row),
+               subImgSize=(520, 380),
+               highlightAtomLists=atom_lists,
+               highlightBondLists=bond_lists,
+               highlightAtomColors=atom_colors,
+               highlightBondColors=bond_colors,
+               drawOptions=draw_options,
+               useSVG=False
+           )
+       )
+
     return DiversityResults(candidates=candidates, diverse=diverse, scaffold_counts=counts)
