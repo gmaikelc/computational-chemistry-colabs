@@ -126,7 +126,7 @@ def analyze_chemical_diversity(
         #    useSVG=False,
         #))
 
-       from rdkit.Chem.Draw import rdMolDraw2D
+from rdkit.Chem.Draw import rdMolDraw2D
 
        # Drawing options
        draw_options = rdMolDraw2D.MolDrawOptions()
